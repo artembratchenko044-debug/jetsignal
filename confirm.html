@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JetSignal — Confirmation</title>
+    <meta name="description" content="Confirm your JetSignal subscription." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="confirm.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="sky-background" aria-hidden="true">
+        <div class="sky-gradient"></div>
+        <div class="cloud-haze"></div>
+        <div class="radar-rings"></div>
+        <div class="contrails"></div>
+      </div>
+
+      <section class="confirmation" aria-live="polite">
+        <div class="logo-radar" aria-hidden="true">
+          <div class="radar-ring ring-one"></div>
+          <div class="radar-ring ring-two"></div>
+          <div class="radar-ring ring-three"></div>
+          <div class="radar-sweep"></div>
+          <div class="radar-core">
+            <span class="logo-dot"></span>
+            <span class="logo-line"></span>
+          </div>
+        </div>
+
+        <h1 id="confirm-title">Confirmed ✅ You’re in!</h1>
+        <p id="confirm-body">
+          You’re subscribed successfully. Check your inbox—your first update will
+          land soon.
+        </p>
+        <a class="primary-link" id="confirm-cta" href="index.html"
+          >Back to JetSignal</a
+        >
+        <button class="secondary-button" id="resend-button" type="button">
+          Resend confirmation
+        </button>
+      </section>
+    </main>
+
+    <script src="confirm.js"></script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JetSignal — Coming Soon</title>
+    <meta
+      name="description"
+      content="JetSignal — your AI skyward assistant. Leave your email to be first to know when we launch."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="sky-background" aria-hidden="true">
+        <div class="sky-gradient"></div>
+        <div class="cloud-haze"></div>
+        <div class="radar-rings"></div>
+        <div class="contrails"></div>
+      </div>
+
+      <section class="hero" aria-labelledby="headline">
+        <div class="brand">
+          <div class="logo-mark" aria-hidden="true">
+            <span class="logo-dot"></span>
+            <span class="logo-line"></span>
+          </div>
+          <p class="brand-name">JetSignal</p>
+          <span class="badge">
+            <span class="status-dot" aria-hidden="true"></span>
+            Official release soon
+          </span>
+        </div>
+
+        <h1 id="headline">JetSignal — your AI skyward assistant.</h1>
+        <p class="subhead">Leave your email and be first to know when we launch.</p>
+        <p class="supporting">Be ready for rare aircraft alerts, live tracking, and spotter stats.</p>
+
+        <form class="form-card" id="signup-form">
+          <label class="sr-only" for="email">Email address</label>
+          <div class="field">
+            <label class="field-label" for="airport-search">Preferred airport</label>
+            <div class="field-control">
+              <input
+                id="airport-search"
+                name="airport"
+                type="text"
+                placeholder="Start typing a city (e.g., Los Angeles)"
+                autocomplete="off"
+                required
+              />
+              <div class="suggestions" id="airport-suggestions" role="listbox"></div>
+            </div>
+            <p class="field-hint" id="airport-selection">Select one airport.</p>
+          </div>
+          <div class="form-row">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            />
+            <button type="submit">Notify me</button>
+          </div>
+          <p class="form-note">No spam. Just launch updates.</p>
+          <p class="form-success" role="status" aria-live="polite">
+            You are on the list. See you at launch.
+          </p>
+        </form>
+
+        <div class="demo-feed" aria-live="polite" aria-label="JetSignal demo alerts">
+          <p class="feed-label">Live demo alerts</p>
+          <div class="feed-list" id="demo-feed"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <a href="#" aria-label="Privacy policy">Privacy</a>
+        <a href="#" aria-label="Contact JetSignal">Contact</a>
+      </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

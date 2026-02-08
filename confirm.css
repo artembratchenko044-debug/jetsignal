@@ -1,0 +1,302 @@
+:root {
+  color-scheme: only light;
+  --sky-1: #6ec8ff;
+  --sky-2: #8fe3ff;
+  --sky-3: #f2fbff;
+  --ink-1: #0c1727;
+  --ink-2: #223a54;
+  --glass: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow: 0 18px 60px rgba(12, 23, 39, 0.18);
+  --accent: #05080f;
+  --focus: #1b4cf2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  color: var(--ink-1);
+  min-height: 100vh;
+  background: var(--sky-3);
+}
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  overflow: hidden;
+}
+
+.sky-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sky-gradient {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 55%),
+    linear-gradient(135deg, var(--sky-1), var(--sky-2) 55%, var(--sky-3) 100%);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.cloud-haze {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.6), transparent 55%),
+    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.5), transparent 60%);
+  filter: blur(40px);
+  opacity: 0.65;
+  animation: cloudMove 28s linear infinite;
+}
+
+.radar-rings {
+  position: absolute;
+  inset: -10%;
+  background: repeating-radial-gradient(
+    circle at 60% 40%,
+    rgba(8, 28, 51, 0.08),
+    rgba(8, 28, 51, 0.08) 1px,
+    transparent 12px,
+    transparent 38px
+  );
+  opacity: 0.35;
+  mix-blend-mode: soft-light;
+}
+
+.contrails {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.25) 40%, transparent 60%),
+    linear-gradient(120deg, transparent 10%, rgba(255, 255, 255, 0.2) 35%, transparent 70%);
+  background-size: 700px 700px;
+  background-position: -100px -120px, 200px 80px;
+  opacity: 0.35;
+  animation: contrailShift 24s ease-in-out infinite;
+}
+
+.confirmation {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  width: min(92vw, 560px);
+  padding: 40px 36px 44px;
+  text-align: center;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 20px;
+}
+
+.logo-radar {
+  width: 160px;
+  height: 160px;
+  margin: 6px auto 4px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.radar-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(41, 215, 121, 0.25);
+  animation: pulse 3.2s ease-in-out infinite;
+}
+
+.ring-one {
+  width: 100%;
+  height: 100%;
+}
+
+.ring-two {
+  width: 120px;
+  height: 120px;
+  animation-delay: 0.6s;
+}
+
+.ring-three {
+  width: 80px;
+  height: 80px;
+  animation-delay: 1.2s;
+}
+
+.radar-sweep {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(
+    rgba(41, 215, 121, 0.4),
+    rgba(41, 215, 121, 0.1) 40%,
+    transparent 60%
+  );
+  animation: sweep 3.8s linear infinite;
+  mix-blend-mode: screen;
+}
+
+.radar-core {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  border: 1px solid rgba(12, 23, 39, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(12, 23, 39, 0.12);
+  animation: corePulse 2.6s ease-in-out infinite;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ink-2);
+}
+
+.logo-line {
+  position: absolute;
+  width: 44px;
+  height: 2px;
+  background: rgba(12, 23, 39, 0.5);
+  transform: rotate(-30deg);
+}
+
+h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.primary-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.98rem;
+  box-shadow: 0 10px 25px rgba(5, 8, 15, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(5, 8, 15, 0.28);
+}
+
+.secondary-button {
+  background: transparent;
+  border: 1px solid rgba(12, 23, 39, 0.2);
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 0.94rem;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  border-color: rgba(12, 23, 39, 0.35);
+}
+
+.secondary-button.is-hidden {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .confirmation {
+    padding: 28px 20px;
+  }
+
+  .logo-radar {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-2%, -3%, 0);
+  }
+  100% {
+    transform: translate3d(2%, 3%, 0);
+  }
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translate3d(-2%, 0, 0);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0);
+  }
+  100% {
+    transform: translate3d(-2%, 1%, 0);
+  }
+}
+
+@keyframes contrailShift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-60px, 30px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes corePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
