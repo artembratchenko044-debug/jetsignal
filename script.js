@@ -12,6 +12,8 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1aGJheGVzYWNtc2Rycnh6ZXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0ODMyOTksImV4cCI6MjA4NjA1OTI5OX0.T7iBGB39MbsbNEso7W95ei020JXnjjOsULzBKnmcba8";
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SEND_CONFIRM_URL =
+  "https://wuhbaxesacmsdrrxzeuy.supabase.co/functions/v1/send-confirmation";
 
 const setStatus = (message, isSuccess = false) => {
   successMessage.textContent = message;
@@ -299,38 +301,42 @@ form.addEventListener("submit", async (event) => {
   submitButton.textContent = "Sending...";
   note.textContent = "Saving your spot...";
 
-  const { error } = await supabaseClient
-    .from("user_from_landing_page")
-    .insert({
+  const response = await fetch(SEND_CONFIRM_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
       email,
       iata_code: selectedAirport.iata,
       city: selectedAirport.city,
       airport_name: selectedAirport.name,
-    });
+    }),
+  });
 
-  if (error) {
-    if (error.code === "23505") {
-      setStatus(
-        "Looks like you’re already on the list 😄 Thanks for trying again — we’ll keep you posted!",
-        true
-      );
-    } else {
-      setStatus(
-        `Something went wrong: ${error.message || "Please try again."}`,
-        false
-      );
-      console.error("Supabase insert error:", error);
-    }
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    setStatus(
+      `Something went wrong: ${data?.error || "Please try again."}`,
+      false
+    );
+    console.error("Confirmation error:", data);
     note.textContent = "No spam. Just launch updates.";
     submitButton.disabled = false;
     submitButton.textContent = "Notify me";
     return;
   }
 
-  setStatus(
-    "You’re in! 🎉 Check your inbox — we just sent you a quick confirmation email.",
-    true
-  );
+  if (data.status === "already") {
+    setStatus(
+      "Looks like you’re already on the list. Thanks for coming back.",
+      true
+    );
+  } else {
+    setStatus(
+      "You’re in. Check your inbox — we just sent you a confirmation email.",
+      true
+    );
+  }
   note.textContent = "No spam. Just launch updates.";
   submitButton.textContent = "Saved";
   emailInput.value = "";
