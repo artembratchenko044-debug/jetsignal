@@ -303,7 +303,11 @@ form.addEventListener("submit", async (event) => {
 
   const response = await fetch(SEND_CONFIRM_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      apikey: SUPABASE_ANON_KEY,
+    },
     body: JSON.stringify({
       email,
       iata_code: selectedAirport.iata,

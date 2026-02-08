@@ -59,7 +59,13 @@ const confirmEmail = async () => {
       "https://wuhbaxesacmsdrrxzeuy.supabase.co/functions/v1/confirm-email",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1aGJheGVzYWNtc2Rycnh6ZXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0ODMyOTksImV4cCI6MjA4NjA1OTI5OX0.T7iBGB39MbsbNEso7W95ei020JXnjjOsULzBKnmcba8",
+          apikey:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1aGJheGVzYWNtc2Rycnh6ZXV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0ODMyOTksImV4cCI6MjA4NjA1OTI5OX0.T7iBGB39MbsbNEso7W95ei020JXnjjOsULzBKnmcba8",
+        },
         body: JSON.stringify({ token }),
       }
     );
