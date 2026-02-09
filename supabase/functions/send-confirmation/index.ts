@@ -41,6 +41,9 @@ const sendEmail = async (to: string, confirmUrl: string) => {
         },
       ],
       template_id: SENDGRID_TEMPLATE_ID,
+      tracking_settings: {
+        click_tracking: { enable: false, enable_text: false },
+      },
     }),
   });
 
