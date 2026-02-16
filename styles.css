@@ -41,7 +41,7 @@ body {
   transform: translateX(-50%);
   z-index: 3;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .site-nav {
@@ -131,6 +131,8 @@ body {
   max-width: 680px;
   width: min(92vw, 680px);
   align-self: center;
+  justify-self: center;
+  margin: 0 auto;
   text-align: center;
   display: flex;
   flex-direction: column;
