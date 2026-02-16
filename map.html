@@ -46,13 +46,37 @@
           <div class="status-chip" id="status-chip">Loading</div>
         </div>
 
-        <div class="map-stage">
-          <div id="aircraft-map" role="application" aria-label="Aircraft map"></div>
-          <aside class="map-overlay">
-            <p class="overlay-label">Tracked aircraft</p>
-            <p class="overlay-count" id="aircraft-count">0</p>
-            <p class="overlay-note" id="last-updated">Waiting for first update</p>
+        <div class="map-layout">
+          <aside class="filters-panel" aria-label="Filters">
+            <div class="filter-group">
+              <p class="filter-title">Aircraft categories</p>
+              <label class="filter-item filter-item-all">
+                <input type="checkbox" id="all-categories" checked />
+                <span>All categories</span>
+              </label>
+              <div id="category-list"></div>
+            </div>
+
+            <div class="filter-group">
+              <p class="filter-title">Aircraft</p>
+              <input
+                type="text"
+                id="aircraft-search"
+                class="aircraft-search"
+                placeholder="Search callsign or flight"
+              />
+              <div id="aircraft-list" class="aircraft-list"></div>
+            </div>
           </aside>
+
+          <div class="map-stage">
+            <div id="aircraft-map" role="application" aria-label="Aircraft map"></div>
+            <aside class="map-overlay">
+              <p class="overlay-label">Tracked aircraft</p>
+              <p class="overlay-count" id="aircraft-count">0</p>
+              <p class="overlay-note" id="last-updated">Waiting for first update</p>
+            </aside>
+          </div>
         </div>
       </section>
 

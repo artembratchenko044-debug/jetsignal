@@ -139,6 +139,101 @@ body {
   align-self: center;
 }
 
+.map-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+}
+
+.filters-panel {
+  border-radius: 16px;
+  border: 1px solid rgba(12, 23, 39, 0.14);
+  background: rgba(255, 255, 255, 0.78);
+  padding: 12px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  max-height: 580px;
+  overflow-y: auto;
+}
+
+.filter-group {
+  display: grid;
+  gap: 8px;
+}
+
+.filter-title {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(34, 58, 84, 0.82);
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(12, 23, 39, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 12px;
+  color: #21364e;
+  font-size: 0.96rem;
+}
+
+.filter-item input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1px solid rgba(12, 23, 39, 0.25);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+.filter-item input[type="checkbox"]:checked {
+  background: #f0be1d;
+  border-color: #e0ad12;
+}
+
+.filter-item input[type="checkbox"]:checked::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+.filter-item-all {
+  font-weight: 500;
+}
+
+.aircraft-search {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(12, 23, 39, 0.2);
+  background: rgba(255, 255, 255, 0.82);
+  padding: 10px 12px;
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.aircraft-search:focus {
+  border-color: rgba(17, 68, 186, 0.45);
+  box-shadow: 0 0 0 3px rgba(17, 68, 186, 0.14);
+}
+
+.aircraft-list {
+  display: grid;
+  gap: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
 .map-head {
   display: flex;
   justify-content: space-between;
@@ -240,6 +335,14 @@ h1 {
 }
 
 @media (max-width: 900px) {
+  .map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-panel {
+    max-height: none;
+  }
+
   .map-stage,
   #aircraft-map {
     min-height: 500px;

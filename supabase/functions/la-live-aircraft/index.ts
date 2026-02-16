@@ -39,6 +39,9 @@ const normalizeRecord = (row: unknown) => {
       heading: toNumber(row[3]),
       altitude: toNumber(row[4]),
       speed: toNumber(row[5]),
+      type: typeof row[8] === "string" ? row[8] : null,
+      model: typeof row[9] === "string" ? row[9] : null,
+      category: null,
     };
   }
 
@@ -70,6 +73,19 @@ const normalizeRecord = (row: unknown) => {
     heading: toNumber(item.heading),
     altitude: toNumber(item.altitude),
     speed: toNumber(item.speed) ?? toNumber(item.ground_speed),
+    type:
+      typeof item.aircraft_type === "string"
+        ? item.aircraft_type
+        : typeof item.type === "string"
+          ? item.type
+          : null,
+    model: typeof item.model === "string" ? item.model : null,
+    category:
+      typeof item.category === "string"
+        ? item.category
+        : typeof item.aircraft_category === "string"
+          ? item.aircraft_category
+          : null,
   };
 };
 
