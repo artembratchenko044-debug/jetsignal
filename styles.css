@@ -28,10 +28,45 @@ body {
   position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr auto;
-  place-items: center;
+  grid-template-rows: auto 1fr auto;
   padding: 32px 20px 24px;
   overflow: hidden;
+}
+
+.site-header {
+  width: min(96vw, 980px);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.site-nav {
+  display: inline-flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(12, 23, 39, 0.1);
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--ink-2);
+  font-size: 0.86rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 9px 12px;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  background: rgba(12, 23, 39, 0.08);
+  color: var(--ink-1);
 }
 
 .sky-background {
@@ -91,6 +126,7 @@ body {
   z-index: 1;
   max-width: 680px;
   width: min(92vw, 680px);
+  align-self: center;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -435,6 +471,18 @@ button[type="submit"]:focus-visible {
 @media (max-width: 700px) {
   .page {
     padding: 24px 16px;
+  }
+
+  .site-header {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .hero {
