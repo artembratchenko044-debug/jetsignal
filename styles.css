@@ -28,15 +28,18 @@ body {
   position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   padding: 32px 20px 24px;
   overflow: hidden;
 }
 
 .site-header {
   width: min(96vw, 980px);
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
   display: flex;
   justify-content: flex-end;
 }
@@ -64,7 +67,8 @@ body {
 }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.site-nav a.is-active {
   background: rgba(12, 23, 39, 0.08);
   color: var(--ink-1);
 }
@@ -440,6 +444,7 @@ button[type="submit"]:focus-visible {
   position: relative;
   z-index: 1;
   display: flex;
+  align-self: end;
   gap: 18px;
   font-size: 0.85rem;
   color: var(--ink-2);
@@ -474,9 +479,11 @@ button[type="submit"]:focus-visible {
   }
 
   .site-header {
-    width: 100%;
+    width: calc(100% - 32px);
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     justify-content: center;
-    margin-bottom: 14px;
   }
 
   .site-nav {
